@@ -13,10 +13,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @RunWith(SpringRestPactRunner.class)
 @Provider("user_service")
-@PactFolder("../order-service/target/pacts")
-//@PactBroker(host = "broker_app", port = "80", tags = {"latest", "DEV", "PROD"})
+//@PactFolder("../order-service/target/pacts")
+@PactBroker(host = "broker_app", port = "80", tags = {"latest", "DEV", "PROD"})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserServiceTest {
 
-    // TODO - Implement so that pact can be verified.
+    @TestTarget
+    public final Target target = new SpringBootHttpTarget();
+    
+    @State("User Paresh exists")
+    public void userPareshExist() {
+    	//setup user paresh
+    	System.out.println("User Paresh exists in database");
+    }
 }
